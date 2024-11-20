@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Course Registration Form</h2>
+    <form id="registrationForm">
+        <label for="name">Student Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        
+        <label for="rollno">Roll No:</label><br>
+        <input type="text" id="rollno" name="rollno"><br><br>
+        <div class="gen">
+        <label for="gender">Gender:</label><br>
+           <div class="der">
+            <div>
+                <label for="male">
+                    <input type="radio" id="male" name="gender" value="Male">Male
+                </label>
+            </div>
+           
+            <div class="hell">
+                <label for="female">
+                    <input type="radio" id="female" name="gender" value="Female">Female
+                </label><br>
+            </div>
+          </div>
+        </div>
+        <label for="year">Year:</label><br>
+        <input type="text" id="year" name="year"><br><br>
+        
+        <label for="department">Department:</label><br>
+        <input type="text" id="department" name="department"><br><br>
+        
+        <label for="section">Section:</label><br>
+        <input type="text" id="section" name="section"><br><br>
+        
+        <label for="mobile_no">Mobile No:</label><br>
+        <input type="text" id="mobile_no" name="mobile_no"><br><br>
+        
+        <label for="email">E-Mail ID:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address"><br><br>
+        
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city"><br><br>
+        
+        <label for="country">Country:</label><br>
+        <input type="text" id="country" name="country"><br><br>
+        
+        <label for="code">SubjectCode:</label><br>
+        <input type="text" id="code" name="code"><br><br>
+
+        <label for="pincode">Pincode:</label><br>
+        <input type="text" id="pincode" name="pincode"><br><br>
+        
+        <input type="button" value="Submit" onclick="validateForm()">
+    </form>
+    <div id="result"></div>
+
+    <script>
+        // function submitForm() {
+        //     var form = document.getElementById('registrationForm');
+        //     var formData = new FormData(form);
+
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open('POST', 'register', true);
+        //     xhr.onload = function () {
+        //         if (xhr.status === 200) {
+        //             document.getElementById('result').innerHTML = xhr.responseText;
+        //         } else {
+        //             console.error('An error occurred!');
+        //         }
+        //     };
+        //     xhr.send(formData);
+        // }
+        function validateForm() {
+            let name = document.getElementById('name').value;
+            let rollno = document.getElementById('rollno').value;
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let year = document.getElementById('year').value;
+            let department = document.getElementById('department').value;
+            let section = document.getElementById('section').value;
+            let mobileNo = document.getElementById('mobile_no').value;
+            let email = document.getElementById('email').value;
+            let address = document.getElementById('address').value;
+            let city = document.getElementById('city').value;
+            let country = document.getElementById('country').value;
+            let pincode = document.getElementById('pincode').value;
+            let code= document.getElementById('code').value;
+        
+            let namePattern = /^[A-Za-z\s]+$/;
+            let rollnoPattern = /^[0-9]{9}$/;
+            let yearPattern = /^[0-9]{4}$/;
+            let departmentPattern = /^[A-Za-z\s]+$/;
+            let sectionPattern = /^[A-Za-z]{1}$/;
+            let mobilePattern = /^[0-9]{10}$/;
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            let pincodePattern = /^[0-9]{6}$/;
+            let codePattern=/^[A-Za-z]{2}\-[0-9]{5}$/;
+
+            if (!namePattern.test(name)) {
+                alert("Please enter a valid name (letters and spaces only).");
+                return false;
+            }
+            if (!rollnoPattern.test(rollno)) {
+                alert("Please enter a valid roll number (numbers only).");
+                return false;
+            }
+            if (!gender) {
+                alert("Please select a gender.");
+                return false;
+            }
+            if (!yearPattern.test(year)) {
+                alert("Please enter a valid year (1-4).");
+                return false;
+            }
+            if (!departmentPattern.test(department)) {
+                alert("Please enter a valid department (letters and spaces only).");
+                return false;
+            }
+            if (!sectionPattern.test(section)) {
+                alert("Please enter a valid section (alphanumeric characters only).");
+                return false;
+            }
+            if (!mobilePattern.test(mobileNo)) {
+                alert("Please enter a valid mobile number (10 digits).");
+                return false;
+            }
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (address.trim() === "") {
+                alert("Please enter your address.");
+                return false;
+            }
+            if (!namePattern.test(city)) {
+                alert("Please enter a valid city (letters and spaces only).");
+                return false;
+            }
+            if (!namePattern.test(country)) {
+                alert("Please enter a valid country (letters and spaces only).");
+                return false;
+            }
+            if (!pincodePattern.test(pincode)) {
+                alert("Please enter a valid pincode (6 digits).");
+                return false;
+            }
+            if (!codePattern.test(code)) {
+                alert("Please enter a valid Subject Code.");
+                return false;
+            }
+            alert("Registration Successful");
+            return true;
+        }
+    </script>
+</body>
+</html>
